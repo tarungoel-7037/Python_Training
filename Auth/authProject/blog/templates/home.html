@@ -1,0 +1,13 @@
+{% for post in posts %}
+<h3>{{ post.title }}</h3>
+<p>{{ post.content }}</p>
+
+{% if post.author == user %}
+<a href="/update/{{ post.id }}/">Edit</a>
+<a href="/delete/{{ post.id }}/">Delete</a>
+{% endif %} {% endfor %} {% if user.is_authenticated %}
+<form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Logout</button>
+</form>
+{% endif %}
