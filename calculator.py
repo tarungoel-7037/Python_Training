@@ -1,7 +1,12 @@
 def main():
     operation = input('Enter the operation you want to perform ')
-    a = int(input('Enter first number '))
-    b = int(input('Enter second number '))
+    try:
+        a = int(input('Enter first number '))
+        b = int(input('Enter second number '))
+    except ValueError:
+        print('Please enter valid numbers only')
+        return
+
     if operation == '+':
         print(f'{a} {operation} {b} => {a+b}') 
     elif operation == '-':
