@@ -6,7 +6,7 @@ log_pattern = r'(\d{1,3}(?:\.\d{1,3}){3}) - - \[([^\]]+)\] ".*?" (\d{3}) \d+'
 input_path = BASE_DIR /  'sample_log.log'
 output_path = BASE_DIR /  'output.csv'
 
-with input_path.open() as f, output_path.open('w') as o:
+with input_path.open('r', encoding='utf-8') as f, output_path.open('w', encoding='utf-8') as o:
     o.write("IP Address, Date/Time, Status Code\n")
     
     for line in f:
