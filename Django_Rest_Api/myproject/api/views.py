@@ -4,6 +4,7 @@ from .models import Student
 from .serializers import StudentSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from .constants import ERROR_MESSAGES
 
 @api_view(['GET'])
 def student_list(request):
@@ -24,7 +25,7 @@ def update_student(request,pk):
     try:
         student=Student.objects.get(id=pk)
     except Student.DoesNotExist:
-        return Response({"error":"Student Not Found"},status=status.HTTP_404_NOT_FOUND)
+        return Response({"error":ERROR_MESSAGES['student_not_found']},status=status.HTTP_404_NOT_FOUND)
     serializer = StudentSerializer(student,data=request.data,partial=True)    
     if serializer.is_valid():
         serializer.save()
@@ -37,6 +38,6 @@ def delete_student(request,pk):
     try:
         student = Student.objects.get(id=pk)
     except Student.DoesNotExist:
-        return Response({"error":"Student not found"},status=status.HTTP_404_NOT_FOUND)
+        return Response({"error":ERROR_MESSAGES['student_not_found']},status=status.HTTP_404_NOT_FOUND)
     student.delete()
-    return Response({"message":"Student deleted successfully"},status=status.HTTP_204_NO_CONTENT)
+    return Response({"message":ERROR_MESSAGES['student_deleted']},status=status.HTTP_204_NO_CONTENT)
