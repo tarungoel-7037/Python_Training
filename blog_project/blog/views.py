@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm
 from .models import Post
 
@@ -12,15 +12,15 @@ def create_post(request):
             return render(request, 'blog/create_post.html', {'form': form})
     else:
         form = PostForm()
-        return render(request,'blog/create_post.html',{'form' : form})
+        return render(request, 'blog/create_post.html', {'form' : form})
     
 
 def post_list(request):
     posts = Post.objects.all()
-    return render(request,'blog/post_list.html',{'posts':posts})
+    return render(request, 'blog/post_list.html', {'posts':posts})
 
 
-def update_post(request,id):
+def update_post(request, id):
     post = get_object_or_404(Post, id=id)
     
     if request.method == "POST":
@@ -29,15 +29,15 @@ def update_post(request,id):
             form.save()
             return redirect('post_list')
     else:
-        form = PostForm(instance=post)
+        form = PostForm(instance = post)
 
     return render(request, 'blog/create_post.html', {'form': form})
 
-def delete_post(request,id):
+def delete_post(request, id):
     post = get_object_or_404(Post, id=id)
     
     if request.method == "POST":
         post.delete()
         return redirect('post_list')
-    return render(request,"blog/delete_post.html",{'post':post})
+    return render(request, "blog/delete_post.html", {'post':post})
 
