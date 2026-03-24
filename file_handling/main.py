@@ -10,11 +10,11 @@ with input_path.open() as f, output_path.open('w') as o:
     o.write("IP Address, Date/Time, Status Code\n")
     
     for line in f:
-        match = re.search(log_pattern,line)
-        if(match):
+        match = re.search(log_pattern, line)
+        if match:
             ip = match.group(1)
             datetime_str = match.group(2)
             status = match.group(3)
             o.write(f"{ip}, {datetime_str}, {status}\n")   
-    
+
 print(f"Copied to output.csv")
