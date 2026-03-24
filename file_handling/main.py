@@ -17,4 +17,4 @@ with input_path.open() as f, output_path.open('w') as o:
             status = match.group(3)
             o.write(f"{ip}, {datetime_str}, {status}\n")   
 
-print(f"Copied to output.csv")
+print(f"Copied to {output_path}")
