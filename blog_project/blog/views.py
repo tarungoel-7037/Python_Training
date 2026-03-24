@@ -9,7 +9,7 @@ def create_post(request):
             form.save()
             return redirect('post_list')
         else:
-            print(form.errors())
+            return render(request, 'blog/create_post.html', {'form': form})
     else:
         form = PostForm()
         return render(request,'blog/create_post.html',{'form' : form})
