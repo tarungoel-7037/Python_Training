@@ -14,6 +14,9 @@ def create_post(request):
         form = PostForm()
         return render(request, 'blog/create_post.html', {'form' : form})
     
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request, 'blog/post_detail.html', {'post': post})
 
 def post_list(request):
     posts = Post.objects.all()
